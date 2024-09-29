@@ -40,7 +40,7 @@ class _splashCoulmnState extends State<splashCoulmn> {
               width: double.infinity,
               height: 70,
               decoration: BoxDecoration(borderRadius: BorderRadius.circular(20),color: Colors.white,),
-              child: Center(child: Text(StringsMangers.getStarrted,style: GoogleFonts.farro(textStyle: TextStyle(color: colorManagers.primary_color, fontSize: 21)),))),
+              child: Center(child: Text(StringsMangers.getStarrted,style: GoogleFonts.farro(textStyle: TextStyle(color: ColorManagers.primary_color, fontSize: 21)),))),
         ),
         SizedBox(height: 20,)
 
