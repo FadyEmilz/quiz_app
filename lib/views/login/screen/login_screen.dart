@@ -64,6 +64,7 @@ class _LoginScreenState extends State<LoginScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 15),
               child: Container(
                 child: Custom_textField(
+                  textFieldcontl: _loginController.textFieldCNTR,
                   onChanged: (String value) {
                     _loginController.TextfieldUpdated();
                   },

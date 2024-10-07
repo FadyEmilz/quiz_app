@@ -9,11 +9,13 @@ class QuizScreen extends StatefulWidget {
 }
 
 class _QuizScreenState extends State<QuizScreen> {
+
   @override
   Widget build(BuildContext context) {
+    String userName = ModalRoute.of(context)!.settings.arguments as String;
     return Scaffold(
       body: Center(
-        child: Text('Hello World'),
+        child: Text(userName),
       ),
     );
   }

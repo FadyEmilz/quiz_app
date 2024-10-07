@@ -4,12 +4,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:quiz_app/core/resourses/routes_managers.dart';
 
 class LoginController{
-  String name = "";
+
   late GlobalKey<FormState> loginKey;
   bool activButton = false;
   late StreamController<bool> streamBuikder;
   late Sink<bool> dataInput;
   late Stream<bool> dataOutput;
+  late TextEditingController textFieldCNTR;
 
   LoginController(){
     loginKey = GlobalKey();
@@ -17,6 +18,7 @@ class LoginController{
     dataInput = streamBuikder.sink;
     dataOutput = streamBuikder.stream;
     dataInput.add(activButton);
+    textFieldCNTR = TextEditingController();
 
   }
   String? loginValdeteMethod (value){
@@ -44,6 +46,6 @@ class LoginController{
     streamBuikder.close();
   }
   void navigateToQuiz(BuildContext context){
-    Navigator.pushReplacementNamed(context, routesMangersNames.quiz);
+    Navigator.pushReplacementNamed(arguments: textFieldCNTR.text,context, routesMangersNames.quiz);
   }
 }
