@@ -15,6 +15,12 @@ class onBoardingScreen extends StatefulWidget {
 }
 
 class _onBoardingScreenState extends State<onBoardingScreen> {
+  late onBoardingController _onBoardingController;
+  @override
+  void initState() {
+    _onBoardingController = onBoardingController();
+    super.initState();
+  }
   int index =0;
   @override
   Widget build(BuildContext context) {
@@ -25,6 +31,11 @@ class _onBoardingScreenState extends State<onBoardingScreen> {
         padding: const EdgeInsets.symmetric(horizontal: 15),
         child: Center(
           child: PageView.builder(
+            onPageChanged: (val){
+              print(val);
+              onBoardingController().onTabIndicator(val);
+            },
+            controller: _onBoardingController.onBoardingPageViewcntl,
             itemCount: ConstValues.onBoarding_lista.length,
 
 

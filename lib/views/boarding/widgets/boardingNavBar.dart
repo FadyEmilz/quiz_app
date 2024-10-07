@@ -36,13 +36,18 @@ class _BoardingNavBarState extends State<BoardingNavBar> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(
-            StringsMangers.bordingSkip,
-            style: GoogleFonts.farro(
-              textStyle: TextStyle(
-                color: ColorManagers.bordingFont_color,
-                fontSize: 15,
-                fontWeight: FontWeight.w600,
+          InkWell(
+            onTap: (){
+              _onBoardingCtrl.onSkipTabed(context);
+            },
+            child: Text(
+              StringsMangers.bordingSkip,
+              style: GoogleFonts.farro(
+                textStyle: TextStyle(
+                  color: ColorManagers.bordingFont_color,
+                  fontSize: 15,
+                  fontWeight: FontWeight.w600,
+                ),
               ),
             ),
           ),

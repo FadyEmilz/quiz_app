@@ -19,11 +19,13 @@ class boardingCoulmn extends StatelessWidget {
         ),
         SizedBox(height: 20,),
         Text(
+          textAlign: TextAlign.center,
           OnBoardingItems.title,
           style: GoogleFonts.farro(textStyle: TextStyle(color: ColorManagers.bordingFont_color,fontSize: 32)),
         ),
         SizedBox(height: 10,),
         Text(
+          textAlign: TextAlign.center,
           OnBoardingItems.sub_title,
           style: GoogleFonts.farro(textStyle: TextStyle(color: ColorManagers.bordingFont_color,fontSize: 21)),
         ),
