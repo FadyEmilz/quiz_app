@@ -16,7 +16,7 @@ class _MyquizAppState extends State<MyquizApp> {
     return MaterialApp(
       routes: routesMangers.myRoutes,
       debugShowCheckedModeBanner: false,
-      initialRoute: routesMangersNames.splash,
+      initialRoute: routesMangersNames.quiz,
     );
   }
 }
