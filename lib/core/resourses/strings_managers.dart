@@ -10,6 +10,8 @@ class StringsMangers {
   static const String boarding3Stext = "Culpa qui officia deserunt mollit anim id est laborum.";
   static const String bordingSkip = "Skip";
   static const String bordingNext = "Next";
+  static const String navName = "name";
+  static const String navAnswerList = "answerlist";
 
 
 }

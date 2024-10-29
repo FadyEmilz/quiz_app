@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:quiz_app/views/answer/screen/answer_screen.dart';
 import 'package:quiz_app/views/boarding/screens/onBoarding_screen.dart';
 import 'package:quiz_app/views/login/screen/login_screen.dart';
 import 'package:quiz_app/views/quiz/screen/quiz_screen.dart';
@@ -9,6 +10,7 @@ class routesMangersNames {
   static const String splash = 'splashScreen';
   static const String login = 'loginScreen';
   static const String quiz = 'quizscreen';
+  static const String answer = 'answerscreen';
 
 
 }
@@ -17,7 +19,8 @@ class routesMangers {
     routesMangersNames.onBoarding : (context) => onBoardingScreen(),
     routesMangersNames.splash : (context) => splashScreen(),
     routesMangersNames.login : (context) => LoginScreen(),
-    routesMangersNames.quiz : (context) => QuizScreen()
+    routesMangersNames.quiz : (context) => QuizScreen(),
+    routesMangersNames.answer : (context) => AnswerScreen(),
 
 
   };

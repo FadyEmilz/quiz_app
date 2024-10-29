@@ -7,6 +7,8 @@ class ColorManagers {
  static const Color secandary_color = Color(0xffb9b6d7);
  static const Color zetiy_color = Color(0xff004643);
  static const Color lightPrimary_color = Color(0xffcdcde1);
+ static const Color green_color = Color(0xff35ac05);
+ static const Color red_color = Color(0xfff83e53);
 
 
 

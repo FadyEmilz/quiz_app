@@ -20,13 +20,19 @@ class QuizScreen extends StatefulWidget {
   State<QuizScreen> createState() => _QuizScreenState();
 }
 
-class _QuizScreenState extends State<QuizScreen> {
+class _QuizScreenState extends State<QuizScreen> with SingleTickerProviderStateMixin {
   late QuizScreenController _quizScreenController;
   @override
   void initState() {
-    _quizScreenController = QuizScreenController();
+
+    _quizScreenController = QuizScreenController(this,context);
+    _quizScreenController.forwardAnimation();
+    _quizScreenController.restartAnimation();
+
     super.initState();
+
   }
+
   @override
   void dispose() {
     _quizScreenController.ondispose();
@@ -35,13 +41,22 @@ class _QuizScreenState extends State<QuizScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // String userName = ModalRoute.of(context)!.settings.arguments as String;
+    String userName = ModalRoute.of(context)!.settings.arguments as String;
+    _quizScreenController.userNameGetter(userName);
+
     return Scaffold(
         backgroundColor: ColorManagers.fill_color,
-        appBar: AppbarQuizscreen(),
+        appBar: AppbarQuizscreen(
+           cureentTextQuestionStream: _quizScreenController.questionOutput,
+        ),
         bottomNavigationBar: Padding(
           padding: const EdgeInsets.only(bottom: 20),
-          child: Myappbutton(btn_title: 'Next', onPressed: (){}, isActiveStream: _quizScreenController.dataOutput),
+          child: Myappbutton(
+              btn_title: 'Next',
+              onPressed: () {
+                _quizScreenController.nextQuestion();
+              },
+              isActiveStream: _quizScreenController.dataOutput),
         ),
         body: SingleChildScrollView(
           child: Padding(
@@ -58,27 +73,33 @@ class _QuizScreenState extends State<QuizScreen> {
                     clipBehavior: Clip.none,
                     children: [
                       CustomQuestionContainer(
-                          question:
-                              'In what year did the United States \n host the FIFA World Cup for the first time?'),
+                        qustionOutput: _quizScreenController.questionOutput,
+                      ),
                       Positioned(
                           right: 0,
                           left: 0,
                           top: -40,
-                          child: PercentQuiz(percent_text: '50')),
+                          child: PercentQuiz(
+                            outputTimeStream: _quizScreenController.timeOutput, outputAnimationProgressStream: _quizScreenController.animationProgressOutput,
+                          )),
                     ],
                   ),
                   SizedBox(
                     height: 60,
                   ),
                   CustomQuestionListview(
-                    listaLenth: _quizScreenController.options.length,
-                    oneOption: _quizScreenController.options,
+                    listaLenth: ConstValues
+                        .myQuestions[_quizScreenController.currentQuestion]
+                        .answers
+                        .length,
+                    oneOption: ConstValues
+                        .myQuestions[_quizScreenController.currentQuestion]
+                        .answers,
                     streamRadioGroup:
                         _quizScreenController.outputRadiostreamController,
                     onTap: (int indexVal) {
                       _quizScreenController.onTapOptions(indexVal);
-
-                    },
+                    }, streamOptions: _quizScreenController.questionOutput,
                   )
                 ],
               ),

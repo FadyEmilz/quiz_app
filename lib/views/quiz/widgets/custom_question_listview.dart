@@ -1,4 +1,6 @@
 import 'package:flutter/cupertino.dart';
+import 'package:multiple_stream_builder/multiple_stream_builder.dart';
+import 'package:quiz_app/core/resourses/const_values.dart';
 
 import 'custom_radio_tile.dart';
 
@@ -7,10 +9,11 @@ class CustomQuestionListview extends StatelessWidget {
       {super.key,
       required this.listaLenth,
       required this.oneOption,
-      required this.streamRadioGroup, required this.onTap});
+      required this.streamRadioGroup, required this.onTap, required this.streamOptions});
   final int listaLenth;
-  final List<String> oneOption;
-  final Stream streamRadioGroup;
+  final List<dynamic> oneOption;
+  final Stream<int> streamRadioGroup;
+  final Stream<int> streamOptions;
   final void Function(int indexVal) onTap;
 
   @override
@@ -19,15 +22,15 @@ class CustomQuestionListview extends StatelessWidget {
         physics: NeverScrollableScrollPhysics(),
         shrinkWrap: true,
         itemBuilder: (context, index) {
-          return StreamBuilder(
-              stream: streamRadioGroup,
-              builder: (context, snapshot) {
+          return StreamBuilder2<dynamic,int>(
+              streams: StreamTuple2(streamRadioGroup,streamOptions),
+              builder: (context, snapshots) {
                 return CustomRadioTile(
-                  optionText: oneOption[index],
+                  optionText: ConstValues.myQuestions[snapshots.snapshot2.data == null ? 0 : snapshots.snapshot2.data!].answers[index],
                   onTap: () {
                     onTap(index);
                   },
-                  isSelected: snapshot.data == null ? false : snapshot.data == index ? true : false,
+                  isSelected: snapshots.snapshot1.data == null ? false : snapshots.snapshot1.data == index ? true : false,
                 );
               });
         },
